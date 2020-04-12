@@ -1,31 +1,8 @@
-# to create a new package you create a new release/tag 
-# in github appveyor will build it without the -cixxx tag 
-# it will then be deployable cleanly to nuget.org
-
-branches:  
+assembly-versioning-scheme: MajorMinorPatch
+branches:
   master:
-    tag: ci
-    mode: ContinuousDeployment
-    increment: Minor
-    prevent-increment-of-merged-branch-version: false
-    track-merge-target: true
-  pull-request:
-    regex: (pull|pull\-requests|pr)[/-]
-    mode: ContinuousDelivery
-    tag: PullRequest
-    increment: Inherit
-    prevent-increment-of-merged-branch-version: false
-    tag-number-pattern: '[/-](?<number>\d+)[-/]'
-    track-merge-target: false
-    tracks-release-branches: false
-    is-release-branch: false
-  otherbranches:
-    regex: '.*'
-    mode: ContinuousDeployment
-    tag: ci
-    increment: Patch
-    prevent-increment-of-merged-branch-version: false
-    track-merge-target: true
-    is-release-branch: false
+    tag: beta
 ignore:
-  sha: []
+  sha: 
+    - 0e77e2e16a136a1cd0f0474fe5710f617d508d81
+    - af73f6a349456f146a8d0a413de1331eddf61bc2
