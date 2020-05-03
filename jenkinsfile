@@ -35,6 +35,17 @@ pipeline
 			}
 
 		}
+
+		stage ('buil my job')
+		{
+			steps
+			{
+				withMaven(jdk: 'javaJDK', maven: 'defaultMaven') {
+				    sh 'mvn clean package'
+				}
+			}
+
+		}
 		
 
 	}
