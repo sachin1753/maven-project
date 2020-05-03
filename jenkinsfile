@@ -3,6 +3,7 @@ pipeline
 	agent any
 	stages
 	{
+		
 		stage ('scm checkout')
 		{
 			steps
@@ -11,6 +12,19 @@ pipeline
 			}
 
 		}
+	
+
+		stage ('compile source code')
+		{
+			steps
+			{
+				withMaven(jdk: 'javaJDK', maven: 'defaultMaven') {
+				    sh 'mvn compile'
+				}
+			}
+
+		}
+		
 
 	}
 }
