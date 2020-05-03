@@ -1,0 +1,16 @@
+pipeline
+{
+	agent any
+	stages
+	{
+		stage ('scm checkout')
+		{
+			steps
+			{
+				git branch: 'master', url: 'https://github.com/sachin1753/maven-project'
+			}
+
+		}
+
+	}
+}
