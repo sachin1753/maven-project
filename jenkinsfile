@@ -24,6 +24,17 @@ pipeline
 			}
 
 		}
+
+		stage ('test source code')
+		{
+			steps
+			{
+				withMaven(jdk: 'javaJDK', maven: 'defaultMaven') {
+				    sh 'mvn test'
+				}
+			}
+
+		}
 		
 
 	}
