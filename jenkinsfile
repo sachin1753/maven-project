@@ -42,7 +42,7 @@ pipeline
 			{
 				withMaven(jdk: 'javaJDK', maven: 'defaultMaven') 
 				{
-					withSonarQubeEnv(credentialsId: 'sonar') 
+					withSonarQubeEnv('sonar') 
 					{
 					    sh 'mvn clean sonar:sonar package'
 					}
