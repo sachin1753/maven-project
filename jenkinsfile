@@ -47,16 +47,17 @@ pipeline
 
 		}
 
-		stage ('jboss dev deployment')
+		stage ('sonar checkout')
 		{
 			steps
 			{
-				sshagent(['deployJboss']) {
-				    sh 'scp -o StrictHostKeyChecking=no */target/*.war ec2-user@172.31.23.29:/opt/wildfly/standalone/deployments'
+				withSonarQubeEnv(credentialsId: 'sonar') {
+				    sh 'sonar:sonar'
 				}
 			}
 
 		}
+
 		
 
 	}
