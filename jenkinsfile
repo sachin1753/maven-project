@@ -40,24 +40,17 @@ pipeline
 		{
 			steps
 			{
-				withMaven(jdk: 'javaJDK', maven: 'defaultMaven') {
-				    sh 'mvn clean package'
+				withMaven(jdk: 'javaJDK', maven: 'defaultMaven') 
+				{
+					withSonarQubeEnv(credentialsId: 'sonar') 
+					{
+					    sh 'mvn clean sonar:sonar package'
+					}
+
 				}
 			}
 
 		}
-
-		stage ('sonar checkout')
-		{
-			steps
-			{
-				withSonarQubeEnv(credentialsId: 'sonar') {
-				    sh 'sonar:sonar'
-				}
-			}
-
-		}
-
 		
 
 	}
