@@ -14,12 +14,23 @@ pipeline
 		}
 	
 
-		stage ('list s3 buckets')
+		stage ('create s3 buckets')
 		{
 			steps
 			{
 				withAWS(credentials: 'aws-key', region: 'us-east-1') {
 				    sh 'aws s3 mb s3://my-bucket-sachin-feb-batch-11may2020'
+				}
+			}
+
+		}
+		
+		stage ('list s3 buckets')
+		{
+			steps
+			{
+				withAWS(credentials: 'aws-key', region: 'us-east-1') {
+				    sh 'aws s3 ls'
 				}
 			}
 
