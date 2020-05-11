@@ -14,39 +14,12 @@ pipeline
 		}
 	
 
-		stage ('compile source code')
+		stage ('list s3 buckets')
 		{
 			steps
 			{
-				withMaven(jdk: 'javaJDK', maven: 'defaultMaven') {
-				    sh 'mvn compile'
-				}
-			}
-
-		}
-
-		stage ('test source code')
-		{
-			steps
-			{
-				withMaven(jdk: 'javaJDK', maven: 'defaultMaven') {
-				    sh 'mvn test'
-				}
-			}
-
-		}
-
-		stage ('buil my job')
-		{
-			steps
-			{
-				withMaven(jdk: 'javaJDK', maven: 'defaultMaven') 
-				{
-					withSonarQubeEnv('sonar') 
-					{
-					    sh 'mvn clean sonar:sonar package'
-					}
-
+				withAWS(credentials: 'aws-key', region: 'us-east-1') {
+				    sh 'aws s3 ls'
 				}
 			}
 
