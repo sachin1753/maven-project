@@ -14,17 +14,16 @@ pipeline
 		}
 	
 
-		stage ('delete s3 bucket')
+		stage ('create EC2 Instance')
 		{
 			steps
 			{
 				withAWS(credentials: 'aws-key', region: 'us-east-1') {
-				    sh 'aws s3 rb s3://my-bucket-sachin-feb-batch-11may2020'
+				    sh 'aws ec2 run-instances --count 1 --instance-type t2.micro --key-name devops-ec2 --security-group-ids MyEC2RoleGroup'
 				}
 			}
 
 		}
-
 		
 
 	}
