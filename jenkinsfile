@@ -19,7 +19,7 @@ pipeline
 			steps
 			{
 				withAWS(credentials: 'aws-key', region: 'us-east-1') {
-				    sh 'aws ec2 create-instances --count 1 --instance-type t2.micro --key-name devops-ec2 --security-group-ids MyEC2RoleGroup'
+				    sh 'aws ec2 run-instances --image-id sach-082bdb3b2d54d5a19 --count 1 --instance-type t2.micro --key-name devops-ec2 --security-group-ids MyEC2RoleGroup'
 				}
 			}
 
