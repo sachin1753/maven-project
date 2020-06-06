@@ -14,17 +14,26 @@ pipeline
 		}
 	
 
-		stage ('create EC2 Instance')
+		stage ('compile source code')
 		{
 			steps
 			{
-				withAWS(credentials: 'aws-key', region: 'us-east-1') {
-				    sh 'aws ec2 run-instances --image-id sach-082bdb3b2d54d5a19 --count 1 --instance-type t2.micro --key-name devops-ec2 --security-group-ids MyEC2RoleGroup'
+				withMaven(jdk: 'javaJDK', maven: 'defaultMaven') {
+				    sh 'mvn compile'
 				}
 			}
 
 		}
-		
+		stage ('buil my job')
+		{
+			steps
+			{
+				withMaven(jdk: 'javaJDK', maven: 'defaultMaven') {
+				    sh 'mvn clean package'
+				}
+			}
+
+		}
 
 	}
 }
