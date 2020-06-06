@@ -1,5 +1,7 @@
 ---
 - hosts: amazonweb
+  become_user: root
+  become: yes
   tasks:
     - name: 'Install Java'
       yum: name=java-1.8.0 state=latest update_cache=yes
