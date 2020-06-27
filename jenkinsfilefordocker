@@ -20,7 +20,7 @@ node
   stage('Push Image on Docker')
   {
     withCredentials([usernameColonPassword(credentialsId: 'mydocker', variable: 'mydocker')]) {
-      sh "docker login -u sachin1753 -p ${mydocker}"
+      sh "docker login -u sachin1753 -p @Samsung1"
     }
     
     sh 'docker push sachin1753/mytomcat:1.0.0'
