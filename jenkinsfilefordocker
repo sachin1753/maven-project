@@ -1,0 +1,7 @@
+node
+{
+  stage('SCM Checkout')
+  {
+    git 'https://github.com/sachin1753/maven-project'
+  }
+}
