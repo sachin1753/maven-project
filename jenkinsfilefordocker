@@ -15,6 +15,6 @@ node
   }
   stage('Build Image')
   {
-    sh 'docker build -t sachin1753/myhttpd:02 .'
+    sh 'docker build -t sachin1753/myhttpd:2.0.0 .'
   }
 }
