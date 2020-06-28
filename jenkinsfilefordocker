@@ -19,7 +19,7 @@ node
   }
   stage('Push Image on Docker')
   {
-    withCredentials([string(credentialsId: 'dockerUserId', variable: 'dockerUserId'), string(credentialsId: 'DOCKER_USER_PASSWORD', variable: 'dockerUserPass')]) {
+    withCredentials([string(credentialsId: 'dockerUserId', variable: 'dockerUserId'), string(credentialsId: 'dockerUserPass', variable: 'dockerUserPass')]) {
         sh "docker login -u ${dockerUserId} -p ${dockerUserPass}"
     }
     sh 'docker push sachin1753/mytomcat:1.0.2'
