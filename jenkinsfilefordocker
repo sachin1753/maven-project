@@ -15,14 +15,14 @@ node
   }
   stage('Build Image')
   {
-    sh 'docker build -t sachin1753/mytomcat:1.0.1 .'
+    sh 'docker build -t sachin1753/mytomcat:1.0.2 .'
   }
   stage('Push Image on Docker')
   {
-    withCredentials([string(credentialsId: 'DOCKER_USER_ID', variable: ''), string(credentialsId: 'DOCKER_USER_PASSWORD', variable: '')]) {
-        sh "docker login -u ${DOCKER_USER_ID} -p ${DOCKER_USER_PASSWORD}"
+    withCredentials([string(credentialsId: 'dockerUserId', variable: 'dockerUserId'), string(credentialsId: 'DOCKER_USER_PASSWORD', variable: 'dockerUserPass')]) {
+        sh "docker login -u ${dockerUserId} -p ${dockerUserPass}"
     }
-    sh 'docker push sachin1753/mytomcat:1.0.1'
+    sh 'docker push sachin1753/mytomcat:1.0.2'
 
   }
 }
