@@ -15,7 +15,7 @@ node
   }
   stage('Build Image')
   {
-    sh 'docker build -t sachin1753/mytomcat:1.0.0 .'
+    sh 'docker build -t sachin1753/mytomcat:1.0.1 .'
   }
   stage('Push Image on Docker')
   {
